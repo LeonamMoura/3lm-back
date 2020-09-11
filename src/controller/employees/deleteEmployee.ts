@@ -4,10 +4,11 @@ import { EmployeesBusiness } from "../../business/EmployeesBusiness";
 
 export const deleteEmployee = async (req: Request, res: Response) => {
   try {
+    const token = req.headers.authorization as string;
     const { id } = req.params
 
     const employeeBusiness = new EmployeesBusiness();
-    await employeeBusiness.deleteEmployee(id)
+    await employeeBusiness.deleteEmployee(token, id)
 
     res.status(200).send({
       message: "Funcionário deletado!"

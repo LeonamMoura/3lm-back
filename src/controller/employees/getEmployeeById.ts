@@ -4,11 +4,11 @@ import { EmployeesBusiness } from "../../business/EmployeesBusiness";
 
 export const getEmployeeById = async (req: Request, res: Response) => {
   try {
-
+    const token = req.headers.authorization as string
     const { id } = req.params
 
     const employeeBusiness = new EmployeesBusiness();
-    const result = await employeeBusiness.getEmployeeById(id)
+    const result = await employeeBusiness.getEmployeeById(token, id)
 
     res.status(200).send(
       result

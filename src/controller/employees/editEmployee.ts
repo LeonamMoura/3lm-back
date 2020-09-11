@@ -6,11 +6,12 @@ import { EmployeesBusiness } from "../../business/EmployeesBusiness";
 
 export const editEmployee = async (req: Request, res: Response) => {
   try {
+    const token = req.headers.authorization as string;
     const { id } = req.params;
     const { name, surname, office, birth_date, salary } = req.body;
 
     const employeeBusiness = new EmployeesBusiness();
-    const result = await employeeBusiness.editEmployee(id, name, surname, office, birth_date, salary)
+    const result = await employeeBusiness.editEmployee(token, id, name, surname, office, birth_date, salary)
 
     res.status(200).send({
       result
